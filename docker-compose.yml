@@ -1,0 +1,17 @@
+version: "3"
+volumes:
+  snaba-front:
+    external:
+      name: snaba-front_app
+  works:
+    external:
+      name: ubudev_works
+services:
+  lsyncd-snaba-front:
+    image: lsyncd/snaba-front:1.0
+    build:
+      context: .
+    command: "-rsync /works/snaba-front/ /snaba-front/"
+    volumes:
+      - "works:/works"
+      - "snaba-front:/snaba-front:nocopy"
