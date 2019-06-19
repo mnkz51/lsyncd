@@ -7,7 +7,7 @@ volumes:
     external:
       name: snaba-front_app
 services:
-  lsyncd-server:
+  server:
     image: lsyncd/server:dev
     build:
       context: .
