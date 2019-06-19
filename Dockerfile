@@ -6,8 +6,12 @@ RUN set -ex; \
         apk --no-cache update; \
         apk --no-cache add \
                 lsyncd \
-        ;
+        ; \
+        mkdir /var/log/lsyncd; \
+        rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT [ "lsyncd", "-nodaemon", "-delay", "1" ]
+COPY lsyncd.conf /etc/lsyncd
+
+CMD [ "lsyncd", "/etc/lsyncd/lsyncd.conf" ]
 
 # END
